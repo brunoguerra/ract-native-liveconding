@@ -7,7 +7,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-import { Provider } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import store, { bootAction, counterAction, incre } from '../redux';
 
 store.subscribe(() => console.log('Second log', store.getState()));
@@ -50,21 +50,31 @@ const Heading = ({title}) => (
     </Text>
 )
 
-const Detail = ({onCounter}) => (
+const DetailComponent = ({counter, onCounter}) => (
   <View style={styles.detailContianer}>
     <TouchableHighlight onPress={onCounter} style={styles.detailsButton}>
-      <Text style={styles.detail}>Counter</Text>
+      <Text style={styles.detail}>Counter {counter}</Text>
     </TouchableHighlight>
   </View>
 )
 
+const Detail = connect((state) => {
+  console.log('get some state to pass to detail component', state);
+  const { counter } = state;
+
+  return { counter };
+})(DetailComponent);
+
 const App = () => {
   store.dispatch(bootAction());
   return (
-    <View style={styles.page}>
+    <Provider store={store}>
+      <View style={styles.page}>
         <Heading title={'Counter with Redux'}></Heading>
         <Detail onCounter={counterDispatcher} />
-    </View>
+      </View>
+    </Provider>
   );
 }
+
 AppRegistry.registerComponent('AwesomeProject', () => App);
