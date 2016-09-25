@@ -1,4 +1,5 @@
 import { createStore } from 'redux'
+export * from './actions'
 
 /**
  * This is a reducer, a pure function with (state, action) => state signature.
@@ -13,6 +14,7 @@ import { createStore } from 'redux'
  * project.
  */
 function counter(state = 0, action) {
+  console.log('counter reducer was called', action);
   switch (action.type) {
   case 'INCREMENT':
     return state + 1
