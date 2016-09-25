@@ -13,13 +13,22 @@ export * from './actions'
  * follows a different convention (such as function maps) if it makes sense for your
  * project.
  */
-function counter(state = 0, action) {
+
+const stateUpdate = (reducer) => (state) => (action) =>
+  Object.assign({}, state, { [reducer]: action(state[reducer]) });
+
+// keep simple and fork as will increase with some code
+const update = stateUpdate('counter');
+
+function counter(state = { counter: 0 }, action) {
   console.log('counter reducer was called', action);
+  const updateState = update(state);
+
   switch (action.type) {
   case 'INCREMENT':
-    return state + 1
+    return updateState((current) => current + 1);
   case 'DECREMENT':
-    return state - 1
+    return updateState((current) => current - 1);
   default:
     return state
   }
