@@ -26,6 +26,21 @@ const styles = StyleSheet.create({
         fontSize: 36,
         fontWeight: 'bold',
         color: 'white'
+    },
+    detailContianer: {
+      flex: 1,
+      flexDirection: 'row'
+    },
+    detailButton: {
+      width: 50,
+      height: 80,
+    },
+    detail: {
+      color: 'white',
+      fontSize: 24,
+      fontWeight: 'bold',
+      padding: 10,
+      backgroundColor: 'rgb(100, 28, 133)'
     }
 })
 
@@ -36,8 +51,10 @@ const Heading = ({title}) => (
 )
 
 const Detail = ({onCounter}) => (
-  <View>
-    <TouchableHighlight onPress={onCounter}><Text>Counter</Text></TouchableHighlight>
+  <View style={styles.detailContianer}>
+    <TouchableHighlight onPress={onCounter} style={styles.detailsButton}>
+      <Text style={styles.detail}>Counter</Text>
+    </TouchableHighlight>
   </View>
 )
 
@@ -45,6 +62,7 @@ const App = () => {
   store.dispatch(bootAction());
   return (
     <View style={styles.page}>
+        <Heading title={'Counter with Redux'}></Heading>
         <Detail onCounter={counterDispatcher} />
     </View>
   );
