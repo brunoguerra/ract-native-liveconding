@@ -25,12 +25,12 @@ export const counterAction = () => ({
   type: 'INCREMENT'
 });
 
-const checkNews = createAction('checkNews');
-export const actions = {
-  checkNews
-}
+export const defaultActions = [
+  'checkNews',
+  'users',
+  'alerts'
+];
 
-// debugging action creation
-const newAction = createAction('sample');
-console.log('Action creation', newAction);
-console.log('Action creator call', newAction.request());
+export const actions = defaultActions.reduce((res, cur) =>
+  Object.assign(res, { [cur]: createAction(cur) })
+, {})
