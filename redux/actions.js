@@ -8,9 +8,9 @@ const capitalize = (str) =>
 const actionName = (action, type) =>
   `${action.toUpperCase()}_${type.toUpperCase()}`;
 
-const createAction = (action) => {
+export const createAction = (action) => {
   return types.reduce((res, cur) => Object.assign(res, {
-    [`${action}${capitalize(cur)}`]: (payload) => ({
+    [`${cur.toLowerCase()}`]: (payload) => ({
       type: actionName(action, cur),
       payload
     })
@@ -33,4 +33,4 @@ export const actions = {
 // debugging action creation
 const newAction = createAction('sample');
 console.log('Action creation', newAction);
-console.log('Action creator call', newAction.sampleRequest());
+console.log('Action creator call', newAction.request());

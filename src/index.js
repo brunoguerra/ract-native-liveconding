@@ -78,3 +78,5 @@ const App = () => {
 }
 
 AppRegistry.registerComponent('AwesomeProject', () => App);
+
+export default App;
