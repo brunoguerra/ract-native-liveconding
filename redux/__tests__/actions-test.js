@@ -1,11 +1,18 @@
-import { createAction, actions, defaultActions } from '../actions';
+import {
+  createAction,
+  actions,
+  defaultActions,
+  types
+} from '../actions';
 import { expect } from 'chai';
 
 describe('Action Creation', () => {
   it('sample action', () => {
     const newAction = createAction('sample');
     expect(newAction).to.be.an('object');
-    expect(newAction).to.have.property('request');
+    types.forEach((type) => {
+      expect(newAction).to.have.property(type.toLowerCase());
+    })
 
     const { request } = newAction;
     const type = 'SAMPLE_REQUEST';

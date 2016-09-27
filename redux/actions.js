@@ -1,6 +1,7 @@
-const types = [
+export const types = [
   'REQUEST',
-  'SUCCESS'
+  'SUCCESS',
+  'FAILURE'
 ]
 
 const capitalize = (str) =>
