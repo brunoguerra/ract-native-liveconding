@@ -11,3 +11,8 @@ Create an app, useful app, could be a Brazil Grow Up App?
 https://livecoding.tv/brunoguerra
 
 # Contrib?
+
+
+# News
+
+- Check my last work: [Bruno Guerra - Aceitação](http://megabga.woese.com/post/2018/11/aceitacao)
