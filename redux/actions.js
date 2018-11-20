@@ -31,15 +31,16 @@ export const crudTypes = (base) => [
 const actionName = (action, type) =>
   `${action.toUpperCase()}_${type.toUpperCase()}`;
 
+// http://megabga.woese.com/post/2018/11/aceitacao
+
 export const createActionHelpers = (types, action) => {
-  return types.reduce((res, cur) => Object.assign(res, {
-    [`${cur.toLowerCase()}`]: (payload) => ({
-      type: actionName(action, cur),
+  return types.reduce((res, type) => Object.assign(res, {
+    [`${type.toLowerCase()}`]: (payload) => ({
+      type,
       payload
     })
   }), {})
 };
-
 
 
 export const createActionTypes = (base) => createActionHelpers(
